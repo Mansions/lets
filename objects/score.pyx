@@ -206,10 +206,15 @@ class score:
 			self.rank,
 			self.date)
 
-	def setCompletedStatus(self):
+	def setCompletedStatus(self, b = None):
 		"""
 		Set this score completed status and rankedScoreIncrease
 		"""
+
+		# Create beatmap object
+		if b is None:
+			b = beatmap.beatmap(self.fileMd5, 0)
+
 		self.completed = 0
 		if self.passed == True and scoreUtils.isRankable(self.mods):
 			# Get userID
@@ -234,9 +239,11 @@ class score:
 				self.rankedScoreIncrease = self.score
 				self.oldPersonalBest = 0
 			else:
+				self.completed = 3
+				self.calculatePP()
 				# Compare personal best's score with current score
-				if getattr(self, glob.conf.extra["submit-config"]["score-overwrite"]) > personalBest[glob.conf.extra["submit-config"]["score-overwrite"]]:
-					# New best score
+				if self.pp > personalBest["pp"]:
+					# New best score by pp
 					self.completed = 3
 					self.rankedScoreIncrease = self.score-personalBest["score"]
 					self.oldPersonalBest = personalBest["id"]
@@ -244,6 +251,7 @@ class score:
 					self.completed = 2
 					self.rankedScoreIncrease = 0
 					self.oldPersonalBest = 0
+				self.pp = 0
 
 		log.debug("Completed status: {}".format(self.completed))
 
