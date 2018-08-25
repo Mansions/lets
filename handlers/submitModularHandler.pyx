@@ -379,11 +379,11 @@ class handler(requestsManager.asyncRequestHandler):
 				log.debug("Generated output for online ranking screen!")
 				log.debug(msg)
 
-
+				url = glob.conf.config["server"]["serverurl"]
 				# send message to #announce if we're rank #1
 				if newScoreboard.personalBestRank == 1 and s.completed == 3 and restricted == False:
 					annmsg = "[{}}/?u={} {}] achieved rank #1 on [https://osu.ppy.sh/b/{} {}] ({})".format(
-						glob.conf.config["server"]["serverurl"]
+						url,
 						userID,
 						username.encode().decode("ASCII", "ignore"),
 						beatmapInfo.beatmapID,
