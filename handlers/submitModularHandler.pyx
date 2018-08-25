@@ -394,6 +394,7 @@ class handler(requestsManager.asyncRequestHandler):
 					requests.get("{}/api/v1/fokabotMessage?{}".format(glob.conf.config["server"]["banchourl"], params))
 					# upon new #1 = send the score to the discord bot
 					# s=0 = regular && s=1 = relax
+					"""
 					botmsg = "?s=1&name={}&id={}&bmid={}&pp={}".format(
 						username.encode().decode("ASCII", "ignore"),
 						userID,
@@ -401,7 +402,7 @@ class handler(requestsManager.asyncRequestHandler):
 						s.pp
 					)
 					requests.get("https://kaori.verge.moe/{}", params)
-
+					"""
 				# Write message to client
 				self.write(msg)
 			else:
