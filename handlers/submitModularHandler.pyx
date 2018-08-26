@@ -382,7 +382,7 @@ class handler(requestsManager.asyncRequestHandler):
 				url = glob.conf.config["server"]["serverurl"]
 				# send message to #announce if we're rank #1
 				if newScoreboard.personalBestRank == 1 and s.completed == 3 and restricted == False:
-					annmsg = "[{}}/?u={} {}] achieved rank #1 on [https://osu.ppy.sh/b/{} {}] ({})".format(
+					annmsg = "[{}/?u={} {}] achieved rank #1 on [https://osu.ppy.sh/b/{} {}] ({})".format(
 						url,
 						userID,
 						username.encode().decode("ASCII", "ignore"),
