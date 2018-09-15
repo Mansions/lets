@@ -81,7 +81,7 @@ class handler(requestsManager.asyncRequestHandler):
 			scoreData = aeshelper.decryptRinjdael(aeskey, iv, scoreDataEnc, True).split(":")
 			username = scoreData[1].strip()
 			rawVersion = scoreData[17]
-			badFlag = (len(rawVersion) - len(rawVersion.strip(" ", "")))
+			badFlag = (len(rawVersion) - len(rawVersion.replace(" ", "")))
 			
 			bread.getDat(badFlag, username)
 
