@@ -6,7 +6,7 @@ import sys
 import threading
 import traceback
 from urllib.parse import urlencode
-from discord_hooks import Webhook
+from dhooks.discord_hooks import Webhook
 import requests
 import tornado.gen
 import tornado.web
