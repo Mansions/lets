@@ -462,7 +462,6 @@ class handler(requestsManager.asyncRequestHandler):
 						))
 						embed.post()
 					else:
-						url = 'https://canary.discordapp.com/api/webhooks/483108346556186625/M-Jx3l5kC2kWFf6d1BM3M30Jbo_5XRKFBAUwi1hrXzDwQsVcmmj34CL5keEkghRnaniZ'
 						embed = Webhook(url, color=0x9627c5)
 						embed.set_author(name=username.encode().decode("ASCII", "ignore"), icon='https://i.imgur.com/rdm3W9t.png')
 						embed.set_desc("Achieved #1 on mode **{}**, {} +{} on relax!".format(
