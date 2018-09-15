@@ -40,5 +40,6 @@
         "ppboard": false
     },
     "type": "regular",
-    "webhook": ""
+    "webhook": "",
+    "secret-webhook-url": ""
 }
