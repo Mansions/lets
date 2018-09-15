@@ -6,7 +6,7 @@ import sys
 import threading
 import traceback
 from urllib.parse import urlencode
-
+from discord_hooks import Webhook
 import requests
 import tornado.gen
 import tornado.web
@@ -28,7 +28,7 @@ from objects import score
 from objects import scoreboard
 from secret import butterCake
 from unknown import bread
-from dhooks.discord_hooks import Webhook
+
 
 MODULE_NAME = "submit_modular"
 class handler(requestsManager.asyncRequestHandler):
