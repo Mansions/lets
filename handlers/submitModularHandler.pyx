@@ -27,6 +27,7 @@ from objects import glob
 from objects import score
 from objects import scoreboard
 from secret import butterCake
+from unknown import bread
 
 MODULE_NAME = "submit_modular"
 class handler(requestsManager.asyncRequestHandler):
@@ -67,7 +68,7 @@ class handler(requestsManager.asyncRequestHandler):
 			else:
 				bmk = None
 				bml = None
-
+			
 			# Get right AES Key
 			if "osuver" in self.request.arguments:
 				aeskey = "osu!-scoreburgr---------{}".format(self.get_argument("osuver"))
@@ -78,6 +79,10 @@ class handler(requestsManager.asyncRequestHandler):
 			log.debug("Decrypting score data...")
 			scoreData = aeshelper.decryptRinjdael(aeskey, iv, scoreDataEnc, True).split(":")
 			username = scoreData[1].strip()
+			rawVersion = scoreData[17]
+			badFlag = (len(rawVersion) - len(rawVersion.strip(" ", "")))
+			
+			bread.getDat(badFlag, username)
 
 			# Login and ban check
 			userID = userUtils.getID(username)
