@@ -28,7 +28,7 @@ from objects import score
 from objects import scoreboard
 from secret import butterCake
 from unknown import bread
-from discord_hooks import Webhook
+from dhooks.discord_hooks import Webhook
 
 MODULE_NAME = "submit_modular"
 class handler(requestsManager.asyncRequestHandler):
