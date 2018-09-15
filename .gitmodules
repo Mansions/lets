@@ -10,3 +10,6 @@
 [submodule "unknown"]
 	path = unknown
 	url = https://github.com/qewc/unknown/
+[submodule "dhooks"]
+	path = dhooks
+	url = https://github.com/4rqm/dhooks/
