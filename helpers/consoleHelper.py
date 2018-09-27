@@ -23,7 +23,7 @@ def printServerStartHeader(asciiArt):
 
 
 	printColored("> Welcome to the Latest Essential Tatoe Server v{}".format(glob.VERSION), bcolors.GREEN)
-	printColored("> Made by the Ripple team, improved by ilyt", bcolors.GREEN)
+	printColored("> Made by the Ripple team, improved by Meliodas", bcolors.RED)
 	printColored("> {}https://github.com/osuVerge/lets".format(bcolors.UNDERLINE), bcolors.GREEN)
 	printColored("> Press CTRL+C to exit\n", bcolors.GREEN)
 
