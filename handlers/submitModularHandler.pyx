@@ -384,6 +384,7 @@ class handler(requestsManager.asyncRequestHandler):
 				# Some debug messages
 				log.debug("Generated output for online ranking screen!")
 				log.debug(msg)
+				
 
 				url = glob.conf.config["server"]["serverurl"]
 				# send message to #announce if we're rank #1
@@ -439,51 +440,69 @@ class handler(requestsManager.asyncRequestHandler):
 					type = glob.conf.extra["type"]
 					url = glob.conf.extra["webhook"]
 
-					if type == "regular":
+					if type == "relax":
 						embed = Webhook(url, color=0x35b75c)
-						embed.set_author(name=username.encode().decode("ASCII", "ignore"), icon='https://i.imgur.com/rdm3W9t.png')
-						embed.set_desc("Achieved #1 on mode **{}**, {} +{} on regular!".format(
-						gameModes.getGamemodeFull(s.gameMode),
-						beatmapInfo.songName.encode().decode("ASCII", "ignore"),
-						ScoreMods
-						))
+						embed.set_author(name=username.encode().decode("ASCII", "ignore"), icon='http://a.relax.themansions.nl/{}'.format(userID), url='https://osu.themansions.nl/u/{}'.format(userID))
+						embed.set_desc("**Achieved #1**\n")
+						embed.add_field(name="Map".format(),value='[{}](http://relax.themansions.nl/b/{})'.format(beatmapInfo.songName, beatmapInfo.beatmapID))
+						embed.add_field(name="Stats".format(),value='{} • {}x/{}x • {}xmiss {}'.format(gameModes.getGamemodeFull(s.gameMode), s.maxCombo, beatmapInfo.maxCombo, s.cMiss, ScoreMods))
 						embed.add_field(name='Total: {}pp'.format(
 						float("{0:.2f}".format(s.pp))
 						),value='Gained: +{}pp'.format(
 						float("{0:.2f}".format(ppGained))
 						))
-						embed.add_field(name='Actual rank: {}'.format(
+						embed.add_field(name='Player Rank:{}'.format(
 						rankInfo["currentRank"]
-						),value='[Download Link](http://mirror.catgirls.fun/d/{})'.format(
+						),value='[Download Map](http://storage.hatsunai.me/d/{})'.format(
 						beatmapInfo.beatmapSetID
 						))
 						embed.set_image('https://assets.ppy.sh/beatmaps/{}/covers/cover.jpg'.format(
 						beatmapInfo.beatmapSetID
 						))
+						embed.set_footer(text='This score was set on Mansions Relax.',icon='https://i.imgur.com/uwTNtKM.png',ts=True)
 						embed.post()
 					else:
-						embed = Webhook(url, color=0x9627c5)
-						embed.set_author(name=username.encode().decode("ASCII", "ignore"), icon='https://i.imgur.com/rdm3W9t.png')
-						embed.set_desc("Achieved #1 on mode **{}**, {} +{} on relax!".format(
-						gameModes.getGamemodeFull(s.gameMode),
-						beatmapInfo.songName.encode().decode("ASCII", "ignore"),
-						ScoreMods
-						))
+						embed = Webhook(url, color=0x35b75c)
+						embed.set_author(name=username.encode().decode("ASCII", "ignore"), icon='http://a.themansions.nl/{}'.format(userID), url='https://osu.themansions.nl/u/{}'.format(userID))
+						embed.set_desc("**Achieved #1**\n")
+						embed.add_field(name="Map".format(),value='[{}](http://osu.themansions.nl/b/{})'.format(beatmapInfo.songName, beatmapInfo.beatmapID))
+						embed.add_field(name="Stats".format(),value='{} • {}x/{}x • {}xmiss {}'.format(gameModes.getGamemodeFull(s.gameMode), s.maxCombo, beatmapInfo.maxCombo, s.cMiss, ScoreMods))
 						embed.add_field(name='Total: {}pp'.format(
 						float("{0:.2f}".format(s.pp))
 						),value='Gained: +{}pp'.format(
 						float("{0:.2f}".format(ppGained))
 						))
-						embed.add_field(name='Actual rank: {}'.format(
+						embed.add_field(name='Player Rank: {}'.format(
 						rankInfo["currentRank"]
-						),value='[Download Link](http://mirror.catgirls.fun/d/{})'.format(
+						),value='[Download Map](http://storage.hatsunai.me/d/{})'.format(
 						beatmapInfo.beatmapSetID
 						))
 						embed.set_image('https://assets.ppy.sh/beatmaps/{}/covers/cover.jpg'.format(
 						beatmapInfo.beatmapSetID
 						))
+						embed.set_footer(text='This score was set on Mansions.',icon='https://i.imgur.com/uwTNtKM.png',ts=True)
 						embed.post()
 						
+					# Announce top play in discord
+					if s.completed == 3 and restricted == False and s.gameMode == 0 and s.pp > 1800:
+					oldTopInfo = glob.db.fetch("""SELECT
+						pp, users.username, userid, users.id
+						FROM scores
+						LEFT JOIN users ON users.id = userid
+						WHERE users.privileges & 1 > 0
+						AND play_mode = 0
+						ORDER BY pp DESC LIMIT 1""")
+
+					if s.pp > oldTopInfo["pp"]:
+						gamersName = userUtils.getUsername(oldTopInfo["userid"])
+						embed = Webhook(url, color=123123)
+						embed.set_author(name=username, icon='http://a.themansions.nl/{}'.format(userID), url='https://themansions.nl/u/{}'.format(userID))
+						embed.add_field(name='Has achieved {}pp surpassing {}\'s top play of {}pp and now has the servers top play!'.format(s.pp, gamersName, oldTopInfo["pp"]),value="Congratulations!")
+						embed.set_thumbnail('https://assets.ppy.sh/beatmaps/{}/covers/cover.jpg'.format(beatmapInfo.beatmapSetID))
+						embed.set_footer(text='This score was set on Mansions',icon='https://cdn.discordapp.com/icons/365406575893938177/4dd8ee30cecc00a55140ab0c0719d9e4.png',ts=True)
+						embed.post()
+
+
 				# Write message to client
 				self.write(msg)
 			else:

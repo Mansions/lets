@@ -41,7 +41,7 @@ class handler(requestsManager.asyncRequestHandler):
 					<body>
 						<div class = "main">
 							<div class = "wrapper">
-								<a href="https://verge.moe"><img src="http://y.zxq.co/ufaibw.png"></a>
+								<a href="https://osu.themansions.nl"><img src="http://y.zxq.co/ufaibw.png"></a>
 								<h3>Howdy, you're still connected to Verge!</h3>
 								You can't access osu!'s website if the Server Switcher is On.<br>
 								Please open the <b>Server Switcher</b> and click <b>On/Off</b> to switch server, then refresh this page.
