@@ -194,7 +194,7 @@ if __name__ == "__main__":
 
 	# CLI stuff
 	__author__ = "Nyo"
-	parser = argparse.ArgumentParser(description="pp recalc tool for ripple")
+	parser = argparse.ArgumentParser(description="pp recalc tool for Mansions")
 	parser.add_argument('-r','--recalc', help="recalculate pp for every score", required=False, action='store_true')
 	parser.add_argument('-z','--zero', help="calculate pp for 0 pp scores", required=False, action='store_true')
 	parser.add_argument('-i','--id', help="calculate pp for score with this id", required=False)
