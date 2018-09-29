@@ -33,7 +33,7 @@
     },
     "submit-config": {
         "max-std-pp": 700,
-        "score-overwrite": "score"
+        "score-overwrite": "pp"
     },
     "allowed-beatmap-rankstatus": [ 2, 3, 4 ],
     "scoreboard": {
