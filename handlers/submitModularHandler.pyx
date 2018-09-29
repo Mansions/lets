@@ -482,27 +482,7 @@ class handler(requestsManager.asyncRequestHandler):
 						))
 						embed.set_footer(text='This score was set on Mansions.',icon='https://i.imgur.com/uwTNtKM.png',ts=True)
 						embed.post()
-						
-					# Announce top play in discord
-					if s.completed == 3 and restricted == False and s.gameMode == 0 and s.pp > 1800:
-					oldTopInfo = glob.db.fetch("""SELECT
-						pp, users.username, userid, users.id
-						FROM scores
-						LEFT JOIN users ON users.id = userid
-						WHERE users.privileges & 1 > 0
-						AND play_mode = 0
-						ORDER BY pp DESC LIMIT 1""")
-
-					if s.pp > oldTopInfo["pp"]:
-						gamersName = userUtils.getUsername(oldTopInfo["userid"])
-						embed = Webhook(url, color=123123)
-						embed.set_author(name=username, icon='http://a.themansions.nl/{}'.format(userID), url='https://themansions.nl/u/{}'.format(userID))
-						embed.add_field(name='Has achieved {}pp surpassing {}\'s top play of {}pp and now has the servers top play!'.format(s.pp, gamersName, oldTopInfo["pp"]),value="Congratulations!")
-						embed.set_thumbnail('https://assets.ppy.sh/beatmaps/{}/covers/cover.jpg'.format(beatmapInfo.beatmapSetID))
-						embed.set_footer(text='This score was set on Mansions',icon='https://cdn.discordapp.com/icons/365406575893938177/4dd8ee30cecc00a55140ab0c0719d9e4.png',ts=True)
-						embed.post()
-
-
+								
 				# Write message to client
 				self.write(msg)
 			else:
