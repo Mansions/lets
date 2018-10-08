@@ -97,7 +97,7 @@ class config:
 		self.config.add_section("db")
 		self.config.set("db", "host", "localhost")
 		self.config.set("db", "username", "root")
-		self.config.set("db", "password", "")
+		self.config.set("db", "password", "meme")
 		self.config.set("db", "database", "ripple")
 		self.config.set("db", "workers", "16")
 
@@ -112,8 +112,8 @@ class config:
 		self.config.set("server", "port", "5002")
 		self.config.set("server", "debug", "False")
 		self.config.set("server", "beatmapcacheexpire", "86400")
-		self.config.set("server", "serverurl", "https://osu.themansions.nl")
-		self.config.set("server", "banchourl", "http://127.0.0.1:5001")
+		self.config.set("server", "serverurl", "https://osu.DOMAIN")
+		self.config.set("server", "banchourl", "http://c.DOMAIN")
 		self.config.set("server", "threads", "16")
 		self.config.set("server", "apikey", "changeme")
 
@@ -129,10 +129,10 @@ class config:
 		self.config.add_section("osuapi")
 		self.config.set("osuapi", "enable", "True")
 		self.config.set("osuapi", "apiurl", "https://osu.ppy.sh")
-		self.config.set("osuapi", "apikey", "YOUR_OSU_API_KEY_HERE")
+		self.config.set("osuapi", "apikey", "osuapikey")
 
 		self.config.add_section("cheesegull")
-		self.config.set("cheesegull", "apiurl", "http://storage.hatsunai.me/api")
+		self.config.set("cheesegull", "apiurl", "http://mirror/api")
 
 		self.config.add_section("discord")
 		self.config.set("discord", "enable", "False")
