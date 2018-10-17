@@ -39,7 +39,7 @@
     "scoreboard": {
         "ppboard": false
     },
-    "type": "regular",
+    "type": "CHANGEME",
     "webhook": "https://discordapp.com/api/webhooks/secret",
     "secret-webhook-url": ""
 }
