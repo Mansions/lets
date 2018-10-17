@@ -40,6 +40,6 @@
         "ppboard": false
     },
     "type": "CHANGEME",
-    "webhook": "https://discordapp.com/api/webhooks/secret",
+    "webhook": "really",
     "secret-webhook-url": ""
 }
