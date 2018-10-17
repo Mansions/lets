@@ -132,7 +132,7 @@ class config:
 		self.config.set("osuapi", "apikey", "osuapikey")
 
 		self.config.add_section("cheesegull")
-		self.config.set("cheesegull", "apiurl", "http://mirror/api")
+		self.config.set("cheesegull", "apiurl", "http://storage.ripple.moe/api")
 
 		self.config.add_section("discord")
 		self.config.set("discord", "enable", "False")
