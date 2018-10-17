@@ -442,7 +442,7 @@ class handler(requestsManager.asyncRequestHandler):
 
 					if type == "relax":
 						embed = Webhook(url, color=0x35b75c)
-						embed.set_author(name=username.encode().decode("ASCII", "ignore"), icon='http://a.relax.themansions.nl/{}'.format(userID), url='https://osu.themansions.nl/u/{}'.format(userID))
+						embed.set_author(name=username.encode().decode("ASCII", "ignore"), icon='http://a.relax.themansions.nl/{}'.format(userID), url='https://relax.themansions.nl/u/{}'.format(userID))
 						embed.set_desc("**Achieved #1**\n")
 						embed.add_field(name="Map".format(),value='[{}](http://relax.themansions.nl/b/{})'.format(beatmapInfo.songName, beatmapInfo.beatmapID))
 						embed.add_field(name="Stats".format(),value='{} • {}x/{}x • {}xmiss {}'.format(gameModes.getGamemodeFull(s.gameMode), s.maxCombo, beatmapInfo.maxCombo, s.cMiss, ScoreMods))
@@ -461,6 +461,48 @@ class handler(requestsManager.asyncRequestHandler):
 						))
 						embed.set_footer(text='This score was set on Mansions Relax.',icon='https://i.imgur.com/uwTNtKM.png',ts=True)
 						embed.post()
+					elif type == "auto":
+						embed = Webhook(url, color=0x35b75c)
+						embed.set_author(name=username.encode().decode("ASCII", "ignore"), icon='http://a.auto.themansions.nl/{}'.format(userID), url='https://auto.themansions.nl/u/{}'.format(userID))
+						embed.set_desc("**Achieved #1**\n")
+						embed.add_field(name="Map".format(),value='[{}](http://auto.themansions.nl/b/{})'.format(beatmapInfo.songName, beatmapInfo.beatmapID))
+						embed.add_field(name="Stats".format(),value='{} • {}x/{}x • {}xmiss {}'.format(gameModes.getGamemodeFull(s.gameMode), s.maxCombo, beatmapInfo.maxCombo, s.cMiss, ScoreMods))
+						embed.add_field(name='Total: {}pp'.format(
+						float("{0:.2f}".format(s.pp))
+						),value='Gained: +{}pp'.format(
+						float("{0:.2f}".format(ppGained))
+						))
+						embed.add_field(name='Player Rank:{}'.format(
+						rankInfo["currentRank"]
+						),value='[Download Map](http://storage.hatsunai.me/d/{})'.format(
+						beatmapInfo.beatmapSetID
+						))
+						embed.set_image('https://assets.ppy.sh/beatmaps/{}/covers/cover.jpg'.format(
+						beatmapInfo.beatmapSetID
+						))
+						embed.set_footer(text='This score was set on Mansions Relax.',icon='https://i.imgur.com/uwTNtKM.png',ts=True)
+						embed.post()
+					elif type == "arcade":
+						embed = Webhook(url, color=0x35b75c)
+						embed.set_author(name=username.encode().decode("ASCII", "ignore"), icon='http://a.arcade.themansions.nl/{}'.format(userID), url='https://arcade.themansions.nl/u/{}'.format(userID))
+						embed.set_desc("**Achieved #1**\n")
+						embed.add_field(name="Map".format(),value='[{}](http://arcade.themansions.nl/b/{})'.format(beatmapInfo.songName, beatmapInfo.beatmapID))
+						embed.add_field(name="Stats".format(),value='{} • {}x/{}x • {}xmiss {}'.format(gameModes.getGamemodeFull(s.gameMode), s.maxCombo, beatmapInfo.maxCombo, s.cMiss, ScoreMods))
+						embed.add_field(name='Total: {}pp'.format(
+						float("{0:.2f}".format(s.pp))
+						),value='Gained: +{}pp'.format(
+						float("{0:.2f}".format(ppGained))
+						))
+						embed.add_field(name='Player Rank:{}'.format(
+						rankInfo["currentRank"]
+						),value='[Download Map](http://storage.hatsunai.me/d/{})'.format(
+						beatmapInfo.beatmapSetID
+						))
+						embed.set_image('https://assets.ppy.sh/beatmaps/{}/covers/cover.jpg'.format(
+						beatmapInfo.beatmapSetID
+						))
+						embed.set_footer(text='This score was set on Mansions Relax.',icon='https://i.imgur.com/uwTNtKM.png',ts=True)
+						embed.post()		
 					else:
 						embed = Webhook(url, color=0x35b75c)
 						embed.set_author(name=username.encode().decode("ASCII", "ignore"), icon='http://a.themansions.nl/{}'.format(userID), url='https://osu.themansions.nl/u/{}'.format(userID))
