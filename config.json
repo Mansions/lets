@@ -37,7 +37,7 @@
     },
     "allowed-beatmap-rankstatus": [ 2, 3, 4 ],
     "scoreboard": {
-        "ppboard": decide
+        "ppboard": true
     },
     "type": "CHANGEME",
     "webhook": "discord",

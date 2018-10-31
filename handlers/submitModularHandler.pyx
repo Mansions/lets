@@ -151,6 +151,11 @@ class handler(requestsManager.asyncRequestHandler):
 			if (glob.conf.extra["submit-config"]["max-std-pp"] >= 0 and s.pp >= glob.conf.extra["submit-config"]["max-std-pp"] and s.gameMode == gameModes.STD) and restricted == False:
 				userUtils.restrict(userID)
 				userUtils.appendNotes(userID, "Restricted due to too high pp gain ({}pp)".format(s.pp))
+				
+				embed = Webhook(url, color=123123)
+				embed.set_author(name=username, icon='https://a.themansions.nl/u/{}', url='http://osu.themansions.nl/u/{}'.format(userID, userID))
+				embed.set_title(title='{} has been restricted due to too high PP gain **({}pp)**!'.format(username, s.pp))
+				embed.post()
 				log.warning("**{}** ({}) has been restricted due to too high pp gain **({}pp)**".format(username, userID, s.pp), "cm")
 
 			# Check notepad hack
@@ -209,11 +214,21 @@ class handler(requestsManager.asyncRequestHandler):
 			if s.score < 0 or s.score > (2 ** 63) - 1:
 				userUtils.ban(userID)
 				userUtils.appendNotes(userID, "Banned due to negative score (score submitter)")
+				
+				embed = Webhook(url, color=123123)
+				embed.set_author(name=username, icon='https://a.themansions.nl/u/{}', url='http://osu.themansions.nl/u/{}'.format(userID, userID))
+				embed.set_title(title='{} has been banned due to too negative score  **(score submitter)**!'.format(username))
+				embed.post()
 
 			# Make sure the score is not memed
 			if s.gameMode == gameModes.MANIA and s.score > 1000000:
 				userUtils.ban(userID)
 				userUtils.appendNotes(userID, "Banned due to mania score > 1000000 (score submitter)")
+				
+				embed = Webhook(url, color=123123)
+				embed.set_author(name=username, icon='https://a.themansions.nl/u/{}', url='http://osu.themansions.nl/u/{}'.format(userID, userID))
+				embed.set_title(title='{} has been banned due to too negative score  **(score submitter)**!'.format(username))
+				embed.post()
 
 			# Ci metto la faccia, ci metto la testa e ci metto il mio cuore
 			if ((s.mods & mods.DOUBLETIME) > 0 and (s.mods & mods.HALFTIME) > 0) \
@@ -221,6 +236,12 @@ class handler(requestsManager.asyncRequestHandler):
 					or ((s.mods & mods.SUDDENDEATH) > 0 and (s.mods & mods.NOFAIL) > 0):
 				userUtils.ban(userID)
 				userUtils.appendNotes(userID, "Impossible mod combination {} (score submitter)".format(s.mods))
+				
+				embed = Webhook(url, color=123123)
+				embed.set_author(name=username, icon='https://a.themansions.nl/u/{}', url='http://osu.themansions.nl/u/{}'.format(userID, userID))
+				embed.set_title(title='{} has been banned due to too impossible mod combination **(score submitter/custom client)**!'.format(username))
+				embed.post()
+
 
 			# NOTE: Process logging was removed from the client starting from 20180322
 			if s.completed == 3 and "pl" in self.request.arguments:
@@ -261,6 +282,11 @@ class handler(requestsManager.asyncRequestHandler):
 						userUtils.restrict(userID)
 						userUtils.appendNotes(userID, "Restricted due to missing replay while submitting a score "
 													  "(most likely he used a score submitter)")
+						
+						embed = Webhook(url, color=123123)
+						embed.set_author(name=username, icon='https://a.themansions.nl/u/{}', url='http://osu.themansions.nl/u/{}'.format(userID, userID))
+						embed.set_title(title='{} has been restricted due to no replay being found on the map {} **(score submitter)**!'.format(username,s.fileMd5))
+						embed.post()							  
 						log.warning("**{}** ({}) has been restricted due to replay not found on map {}".format(
 							username, userID, s.fileMd5
 						), "cm")
